@@ -1,0 +1,20 @@
+.company-logo-container {
+  width: 100%;
+  padding: 30px 0;
+  .company-logo-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 300;
+    font-size: 13;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    .company-logo-item {
+      img {
+        width: 100px;
+        height: auto;
+      }
+    }
+  }
+}

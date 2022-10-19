@@ -1,0 +1,40 @@
+.feature-container {
+  width: 100%;
+  position: absolute;
+
+  .feature-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    padding: 30px 60px;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+    .feature-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      .feature-icon {
+      }
+      .feature-name {
+        color: #272343;
+        font-size: 18px;
+        font-weight: 500;
+        padding: 0;
+        margin: 0;
+      }
+
+      .feature-desc {
+        font-size: 13px;
+        font-weight: 400;
+        color: #9a9caa;
+      }
+    }
+  }
+}
