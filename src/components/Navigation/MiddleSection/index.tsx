@@ -4,6 +4,7 @@ import LogoIcon from "../../../icons/Logo";
 
 import { Input } from "antd";
 import "antd/dist/antd.css";
+import Link from "next/link";
 
 const { Search } = Input;
 
@@ -27,13 +28,15 @@ export default function Middlesection(props: IAppProps) {
           />
         </div>
         <div className="cart-section">
-          <div className="cart-wrapper">
-            <span style={{ fontSize: "22px" }}>
-              <CiShoppingCart />
-            </span>
-            <span className="cart-text">Cart</span>
-            <span className="cart-number">2</span>
-          </div>
+          <Link href="/cart">
+            <div className="cart-wrapper">
+              <span style={{ fontSize: "22px" }}>
+                <CiShoppingCart />
+              </span>
+              <span className="cart-text">Cart</span>
+              <span className="cart-number">2</span>
+            </div>
+          </Link>
           <div className="user-wrapper">
             <span style={{ fontSize: "20px" }}>
               <HiOutlineUser />

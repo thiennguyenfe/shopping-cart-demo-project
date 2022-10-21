@@ -1,0 +1,19 @@
+@mixin breakpoint($point) {
+  @if $point == md {
+    @media (min-width: 48em) {
+      @content;
+    }
+  }
+
+  @if $point == sm {
+    @media (max-width: 767px) {
+      @content;
+    }
+  }
+
+  @if $point == lg {
+    @media (min-width: 1024px) {
+      @content;
+    }
+  }
+}

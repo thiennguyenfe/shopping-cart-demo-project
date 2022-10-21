@@ -1,28 +1,64 @@
-import {
-  HiOutlineArrowLongLeft,
-  HiOutlineArrowLongRight,
-} from "react-icons/hi2";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick-theme.css";
-import "slick-carousel/slick/slick.css";
-import { CiShoppingCart } from "react-icons/ci";
 
-interface IData {
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+import { CiShoppingCart } from "react-icons/ci";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../store";
+import { useRouter } from "next/router";
+
+import { addToCart } from "../../redux/slice/cartSlice";
+
+interface IProduct {
   id: number;
   name: string;
-  img: string;
+  image: string;
   price: string;
   prevPrice: string;
 }
 
 export interface IFeatureCardProps {
   title: string;
-  data: IData[];
+  data: IProduct[];
   slide: number;
+  status: string;
 }
 
 export default function FeatureCard(props: IFeatureCardProps) {
-  const { title, data, slide } = props;
+  const { title, data, slide, status } = props;
+  const cart = useSelector((state: RootState) => state.cart);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const PrevArrow = (props: any) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "flex" }}
+        onClick={onClick}
+      >
+        <span className="arrow-left">
+          <BsArrowLeft style={{ fontSize: "18px" }} />
+        </span>
+      </div>
+    );
+  };
+
+  const NextArrow = (props: any) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "flex" }}
+        onClick={onClick}
+      >
+        <span className="arrow-right">
+          <BsArrowRight style={{ fontSize: "18px" }} />
+        </span>
+      </div>
+    );
+  };
+
   const settings = {
     dots: false,
     infinite: false,
@@ -30,32 +66,55 @@ export default function FeatureCard(props: IFeatureCardProps) {
     slidesToShow: slide,
     slidesToScroll: 1,
     initialSlide: 0,
-    prevArrow: <HiOutlineArrowLongLeft />,
-    nextArrow: <HiOutlineArrowLongRight />,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+
+    responsive: [
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+    ],
   };
+
+  const handleAddToCart = (product: any) => {
+    dispatch(addToCart(product));
+    router.push("/cart");
+  };
+
   return (
     <div className="card-container">
       <div className="card-wrapper">
         <h1 className="card-title">{title}</h1>
-        <Slider {...settings}>
-          {data.map((item, index) => {
-            return (
-              <div className="card-item" key={index}>
-                <img src={item.img} alt="" />
-                <div className="actions"></div>
-                <div className="product-info">
-                  <div>
-                    <h2>{item.name}</h2>
-                    <span>${item.price}</span>
-                  </div>
-                  <div className="add-to-cart">
-                    <CiShoppingCart style={{ fontSize: "20px" }} />
+        {status === "success" ? (
+          <Slider {...settings}>
+            {data?.map((item, index) => {
+              return (
+                <div className="card-item" key={index}>
+                  <img src={item.image} alt="" />
+                  <div className="actions"></div>
+                  <div className="product-info">
+                    <div>
+                      <h2>{item.name}</h2>
+                      <span>${item.price}</span>
+                    </div>
+                    <div className="add-to-cart">
+                      <button onClick={() => handleAddToCart(item)}>
+                        <CiShoppingCart style={{ fontSize: "20px" }} />
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </Slider>
+              );
+            })}
+          </Slider>
+        ) : status === "pending" ? (
+          <p>Loading...</p>
+        ) : (
+          <p>Unexpected error occured...</p>
+        )}
       </div>
     </div>
   );

@@ -9,6 +9,7 @@
       font-size: 32px;
       font-weight: 600;
       color: #272343;
+      margin-bottom: 40px;
     }
 
     .card-item {
@@ -53,13 +54,104 @@
             color: #fff;
             transition: all 0.5s ease;
           }
+
+          button {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+              transition: all 0.5s ease;
+            }
+          }
         }
       }
     }
 
+    .card-item:not(:first-child) {
+      margin-left: 20px;
+    }
+
     .slick-track {
       display: flex;
-      column-gap: 20px;
+
+      .slick-slide:not(:first-child) {
+        margin-left: 20px;
+      }
+    }
+
+    .slick-slider {
+      position: relative;
+
+      .slick-next {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        &::before {
+          display: none;
+        }
+      }
+
+      .slick-prev {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 100;
+
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .arrow-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 44px;
+    height: 44px;
+    background-color: #f0f2f3;
+    color: #272343;
+    border-radius: 50%;
+    position: absolute;
+    top: -70px;
+    right: 30px;
+
+    &:hover {
+      color: #fff;
+      background-color: #007580;
+      transition: all 0.5s ease;
+    }
+  }
+
+  .arrow-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 44px;
+    height: 44px;
+    background-color: #f0f2f3;
+    color: #272343;
+    border-radius: 50%;
+    position: absolute;
+    top: -70px;
+    right: 0;
+
+    &:hover {
+      color: #fff;
+      background-color: #007580;
+      transition: all 0.5s ease;
     }
   }
 }

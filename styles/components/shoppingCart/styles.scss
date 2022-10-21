@@ -1,18 +1,17 @@
-@import "./allproduct";
-
-.products-container {
+.shopping-cart-container {
   width: 100%;
-  margin: 80px 0;
-  .products-wrapper {
+  padding: 40px 2rem;
+  background-color: #f0f2f3;
+
+  .shopping-cart-wrapper {
     max-width: 1280px;
     margin-left: auto;
     margin-right: auto;
 
     .title {
-      font-size: 32px;
+      font-size: 24px;
       font-weight: 600;
       color: #272343;
-      text-align: center;
     }
   }
 }
