@@ -1,11 +1,11 @@
+import Cart1 from "../../components/Cart";
 import Layout from "../../components/Layout";
-import ShoppingCart from "../../components/ShoppingCart";
 
 const Cart = () => {
   return (
     <div>
       <Layout>
-        <ShoppingCart />
+        <Cart1 />
       </Layout>
     </div>
   );

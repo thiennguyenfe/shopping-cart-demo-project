@@ -38,14 +38,14 @@ const categorySlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(categoryFetch.pending, (state, { payload }) => {
+      .addCase(categoryFetch.pending, (state) => {
         state.status = "pending";
       })
       .addCase(categoryFetch.fulfilled, (state, { payload }) => {
         state.items = payload;
         state.status = "success";
       })
-      .addCase(categoryFetch.rejected, (state, { payload }) => {
+      .addCase(categoryFetch.rejected, (state) => {
         state.status = "rejected";
       });
   },

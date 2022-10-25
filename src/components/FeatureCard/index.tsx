@@ -81,7 +81,6 @@ export default function FeatureCard(props: IFeatureCardProps) {
 
   const handleAddToCart = (product: any) => {
     dispatch(addToCart(product));
-    router.push("/cart");
   };
 
   return (

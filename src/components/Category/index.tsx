@@ -15,11 +15,8 @@ const TopCategories = () => {
   const { items: categories, status } = useSelector(
     (state: RootState) => state.category
   );
-  console.log(status);
-  // console.log("category", category);
 
   const { data, error, isLoading } = useGetAllCategoryQuery(categories);
-  console.log("category", data);
 
   const PrevArrow = (props: any) => {
     const { className, style, onClick } = props;

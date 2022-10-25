@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useAppSelector } from "../../../hooks";
 import { RootState } from "../../../store";
-import { useGetAllProductsQuery } from "../../redux/api/productAPI";
+import { useGetAllProductsQuery } from "../../redux/api/productApi";
 import FeatureCard from "../FeatureCard";
 
 const FeaturedProduct = () => {
@@ -9,9 +8,7 @@ const FeaturedProduct = () => {
     (state: RootState) => state.products
   );
 
-  const dispatch = useDispatch();
-
-  const { data, error, isLoading } = useGetAllProductsQuery(products);
+  const { data } = useGetAllProductsQuery(products);
 
   return (
     <div>

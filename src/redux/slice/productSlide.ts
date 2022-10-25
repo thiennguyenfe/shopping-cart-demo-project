@@ -13,7 +13,6 @@ export const productsFetch = createAsyncThunk(
       const response = await axios.get(
         "https://63522738dfe45bbd55d03832.mockapi.io/products"
       );
-      console.log(response.data);
       return response.data;
     } catch (error) {
       console.log(error);

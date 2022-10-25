@@ -3,6 +3,7 @@
   margin-bottom: 100px;
   width: 100%;
   background-color: #f0f2f3;
+  padding-top: 160px;
 
   .slider-items {
     max-width: 1280px;
@@ -40,7 +41,6 @@
           align-items: flex-start;
 
           @include breakpoint(sm) {
-            // position: absolute;
             z-index: 20;
             justify-content: start;
             padding-top: 60%;

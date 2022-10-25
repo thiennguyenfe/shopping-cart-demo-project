@@ -34,25 +34,21 @@ const Footer = () => {
           </div>
           <div className="footer-category">
             <p>CATEGORY</p>
-            {listCategory.map((item, index) => {
-              return (
-                <ul>
-                  <li key={index}>{item.name}</li>
-                </ul>
-              );
-            })}
+            <ul>
+              {listCategory.map((item, index) => {
+                return <li key={index}>{item.name}</li>;
+              })}
+            </ul>
           </div>
         </div>
         <div className="footer-right">
           <div className="footer-support">
             <p>SUPPORT</p>
-            {listCategory.map((item, index) => {
-              return (
-                <ul>
-                  <li key={index}>{item.name}</li>
-                </ul>
-              );
-            })}
+            <ul>
+              {listCategory.map((item, index) => {
+                return <li key={index}>{item.name}</li>;
+              })}
+            </ul>
           </div>
           <div className="footer-newletter">
             <p>NEWSLETTER</p>

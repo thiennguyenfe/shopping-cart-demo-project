@@ -8,7 +8,7 @@ import Feature from "../Feature";
 import CircleDiscountIcon from "../../icons/CircleDiscount";
 
 import { useAppSelector, useAppDispatch } from "../../../hooks";
-import { increment } from "../../redux/slice/counterSlice";
+import { decrement, increment } from "../../redux/slice/counterSlice";
 
 export interface IAppProps {}
 
@@ -43,7 +43,7 @@ export default function Header(props: IAppProps) {
                       <button
                         className="slider-button"
                         onClick={() => {
-                          dispatch(increment());
+                          dispatch(decrement());
                         }}
                       >
                         <p>

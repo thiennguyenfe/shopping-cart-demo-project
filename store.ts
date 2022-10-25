@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { productApi } from "./src/redux/api/productAPI";
 // ...
 import counterReducer from "./src/redux/slice/counterSlice";
 import productsReducer, { productsFetch } from "./src/redux/slice/productSlide";
@@ -9,16 +8,17 @@ import categoryReducer, {
 import { categoryApi } from "./src/redux/api/categoryApi";
 
 import cartReducer from "./src/redux/slice/cartSlice";
+import { productApi } from "./src/redux/api/productApi";
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     category: categoryReducer,
     products: productsReducer,
+    cart: cartReducer,
+
     [categoryApi.reducerPath]: categoryApi.reducer,
     [productApi.reducerPath]: productApi.reducer,
-
-    cart: cartReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(

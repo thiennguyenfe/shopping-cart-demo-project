@@ -4,7 +4,7 @@ import TopSection from "./TopSection";
 
 const Navigation = () => {
   return (
-    <div>
+    <div className="navigation-container">
       <TopSection />
       <Middlesection />
       <MenuSection />
