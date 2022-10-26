@@ -2,9 +2,7 @@ import Slider from "react-slick";
 
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { CiShoppingCart } from "react-icons/ci";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../store";
-import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
 
 import { addToCart } from "../../redux/slice/cartSlice";
 
@@ -25,9 +23,7 @@ export interface IFeatureCardProps {
 
 export default function FeatureCard(props: IFeatureCardProps) {
   const { title, data, slide, status } = props;
-  const cart = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const PrevArrow = (props: any) => {
     const { className, style, onClick } = props;
@@ -110,9 +106,9 @@ export default function FeatureCard(props: IFeatureCardProps) {
             })}
           </Slider>
         ) : status === "pending" ? (
-          <p>Loading...</p>
+          <div>Loading...</div>
         ) : (
-          <p>Unexpected error occured...</p>
+          <div>Unexpected error occured...</div>
         )}
       </div>
     </div>

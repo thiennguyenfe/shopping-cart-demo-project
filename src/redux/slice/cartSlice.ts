@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { notification } from "antd";
 
 interface ICart {
-  key: number;
+  key: React.Key;
   name: string;
   image: string;
   price: number;
@@ -30,7 +30,7 @@ const cartSlice = createSlice({
   reducers: {
     addToCart(state, action) {
       const existingIndex = state.cartItems.findIndex(
-        (item) => item.key === action.payload.id
+        (item) => item.key === action.payload.key
       );
 
       if (existingIndex >= 0) {
@@ -49,14 +49,14 @@ const cartSlice = createSlice({
     },
     decreaseProduct(state, action) {
       const itemIndex = state.cartItems.findIndex(
-        (item) => item.key === action.payload.id
+        (item) => item.key === action.payload.key
       );
 
       if (state.cartItems[itemIndex].cartQuantity > 1) {
         state.cartItems[itemIndex].cartQuantity -= 1;
       } else if (state.cartItems[itemIndex].cartQuantity === 1) {
         const newCartItems = state.cartItems.filter(
-          (item) => item.key !== action.payload.id
+          (item) => item.key !== action.payload.key
         );
         state.cartItems = newCartItems;
       }
@@ -65,9 +65,9 @@ const cartSlice = createSlice({
     },
     removeFromCart(state, action) {
       state.cartItems.map((cartItem) => {
-        if (cartItem.key === action.payload.id) {
+        if (cartItem.key === action.payload.key) {
           const newCartItems = state.cartItems.filter(
-            (item) => item.key !== action.payload.id
+            (item) => item.key !== action.payload.key
           );
 
           state.cartItems = newCartItems;

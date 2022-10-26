@@ -1,22 +1,12 @@
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Slider from "react-slick";
 import { RootState } from "../../../store";
-import { useGetAllCategoryQuery } from "../../redux/api/categoryApi";
-
-interface ICategory {
-  id: number;
-  name: string;
-  img: string;
-  quantity: number;
-}
 
 const TopCategories = () => {
   const { items: categories, status } = useSelector(
     (state: RootState) => state.category
   );
-
-  const { data, error, isLoading } = useGetAllCategoryQuery(categories);
 
   const PrevArrow = (props: any) => {
     const { className, style, onClick } = props;

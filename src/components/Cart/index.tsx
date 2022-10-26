@@ -1,8 +1,7 @@
 import { Breadcrumb, Empty } from "antd";
 import Table, { ColumnsType } from "antd/lib/table";
-import { TableRowSelection } from "antd/lib/table/interface";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsArrowLeft } from "react-icons/bs";
 import { HiTrash } from "react-icons/hi2";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,10 +25,18 @@ interface ICart {
 const Cart1 = () => {
   const cart = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
+  const [selectedRows, setSelectedRows] = useState<ICart[]>([]);
+
+  console.log("selectedRows", selectedRows);
 
   useEffect(() => {
     dispatch(getTotal());
   }, [cart]);
+
+  useEffect(() => {
+    rowSelection;
+    selectedTotal;
+  }, [cart.cartItems]);
 
   const handleIncreaseCart = (product: any) => {
     dispatch(addToCart(product));
@@ -50,31 +57,48 @@ const Cart1 = () => {
   const columns: ColumnsType<ICart> = [
     {
       title: "Product",
-      dataIndex: "image",
       render: ({ image, name }) => (
-        <>
+        <div className="cart-product">
           <img src={image} alt={name} />
           <div>
             <h3>{name}</h3>
           </div>
-        </>
+        </div>
       ),
     },
     {
       title: "Price",
-      dataIndex: "price",
+      render: (cartItem: ICart) => (
+        <div className="cart-product-price">${cartItem.price}</div>
+      ),
     },
     {
       title: "Quantity",
-      dataIndex: "cartQuantity",
+      render: (cartItem: ICart) => (
+        <div className="cart-product-quantity">
+          <button onClick={() => handleDecreaseCart(cartItem)}>-</button>
+          <div className="count">{cartItem.cartQuantity}</div>
+          <button onClick={() => handleIncreaseCart(cartItem)}>+</button>
+        </div>
+      ),
     },
     {
       title: "Total",
-      dataIndex: "address",
+      render: (cartItem: ICart) => (
+        <div className="cart-product-total-price">
+          ${cartItem.price * cartItem.cartQuantity}
+        </div>
+      ),
     },
     {
       title: "Action",
-      dataIndex: "",
+      render: (cartItem: ICart) => (
+        <div className="cart-product-trash">
+          <button onClick={() => handleRemoveFromCart(cartItem)}>
+            <HiTrash />
+          </button>
+        </div>
+      ),
     },
   ];
 
@@ -85,12 +109,24 @@ const Cart1 = () => {
         "selectedRows: ",
         selectedRows
       );
+      setSelectedRows(selectedRows);
     },
-    getCheckboxProps: (record: ICart) => ({
-      disabled: record.name === "Disabled User", // Column configuration not to be checked
-      name: record.name,
-    }),
   };
+
+  let selectedTotal = selectedRows.reduce(
+    (cartTotal, cartItem) => {
+      const { price, cartQuantity } = cartItem;
+      const itemTotal = price * cartQuantity;
+
+      cartTotal.total += itemTotal;
+      cartTotal.quantity += cartQuantity;
+
+      return cartTotal;
+    },
+    { total: 0, quantity: 0 }
+  );
+
+  console.log("quantity", selectedTotal.quantity);
 
   return (
     <div className="shopping-cart-container">
@@ -116,11 +152,44 @@ const Cart1 = () => {
             </div>
           </div>
         ) : (
-          <Table
-            rowSelection={rowSelection}
-            columns={columns}
-            dataSource={cart.cartItems}
-          />
+          <>
+            <Table
+              rowSelection={rowSelection}
+              columns={columns}
+              dataSource={cart.cartItems}
+            />
+            <div className="cart-summary">
+              <button className="clear-btn" onClick={() => handleClearCart()}>
+                Clear Cart
+              </button>
+              <div className="cart-checkout">
+                <div className="subtotal">
+                  <span>Subtotal</span>
+                  {selectedRows.length > 0 ? (
+                    <span className="amount">${selectedTotal.total}</span>
+                  ) : (
+                    <span className="amount">$0</span>
+                  )}
+                </div>
+                <p>Taxes and shipping calculated at checkout</p>
+                {selectedRows.length > 0 ? (
+                  <button className="checkout-btn">Check out</button>
+                ) : (
+                  <button className="checkout-btn-opacity" disabled>
+                    Check out
+                  </button>
+                )}
+                <div className="continue-shopping">
+                  <Link href="/">
+                    <div className="continue-btn">
+                      <BsArrowLeft />
+                      <span>Continue Shopping</span>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </>
         )}
       </div>
     </div>

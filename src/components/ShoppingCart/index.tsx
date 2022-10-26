@@ -72,7 +72,7 @@ const ShoppingCart = () => {
             <div className="cart-items">
               {cart.cartItems &&
                 cart.cartItems.map((cartItem) => (
-                  <div className="cart-item" key={cartItem.id}>
+                  <div className="cart-item" key={cartItem.key}>
                     <div className="cart-product">
                       <img src={cartItem.image} alt={cartItem.name} />
                       <div>
