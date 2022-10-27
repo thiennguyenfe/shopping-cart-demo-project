@@ -5,6 +5,9 @@ import { CiShoppingCart } from "react-icons/ci";
 import { useDispatch } from "react-redux";
 
 import { addToCart } from "../../redux/slice/cartSlice";
+import Link from "next/link";
+import { Card } from "antd";
+import { useEffect, useState } from "react";
 
 interface IProduct {
   id: number;
@@ -24,6 +27,15 @@ export interface IFeatureCardProps {
 export default function FeatureCard(props: IFeatureCardProps) {
   const { title, data, slide, status } = props;
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (status === "success") {
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
+  }, []);
 
   const PrevArrow = (props: any) => {
     const { className, style, onClick } = props;
@@ -83,11 +95,12 @@ export default function FeatureCard(props: IFeatureCardProps) {
     <div className="card-container">
       <div className="card-wrapper">
         <h1 className="card-title">{title}</h1>
-        {status === "success" ? (
-          <Slider {...settings}>
-            {data?.map((item, index) => {
-              return (
-                <div className="card-item" key={index}>
+
+        <Slider {...settings}>
+          {data?.map((item, index) => {
+            return (
+              <Link href={`/product/${item.name}`}>
+                <Card className="card-item" key={index} loading={loading}>
                   <img src={item.image} alt="" />
                   <div className="actions"></div>
                   <div className="product-info">
@@ -101,15 +114,11 @@ export default function FeatureCard(props: IFeatureCardProps) {
                       </button>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </Slider>
-        ) : status === "pending" ? (
-          <div>Loading...</div>
-        ) : (
-          <div>Unexpected error occured...</div>
-        )}
+                </Card>
+              </Link>
+            );
+          })}
+        </Slider>
       </div>
     </div>
   );

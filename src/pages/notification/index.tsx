@@ -10,10 +10,10 @@ const Notification: React.FC = () => {
   const onFinish = (values: any) => {
     console.log("Success:", values);
     pushNotification(values);
-    // notification.success({
-    //   message: `${values.title}`,
-    //   description: `${values.content}`,
-    // });
+    notification.success({
+      message: `${values.title}`,
+      description: `${values.content}`,
+    });
   };
 
   const onFinishFailed = (errorInfo: any) => {
