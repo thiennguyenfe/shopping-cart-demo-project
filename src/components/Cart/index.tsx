@@ -126,8 +126,6 @@ const Cart1 = () => {
     { total: 0, quantity: 0 }
   );
 
-  console.log("quantity", selectedTotal.quantity);
-
   return (
     <div className="shopping-cart-container">
       <div className="shopping-cart-wrapper">

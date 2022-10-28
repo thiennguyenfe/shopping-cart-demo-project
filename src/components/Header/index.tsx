@@ -4,18 +4,12 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
 import { BsArrowRight } from "react-icons/bs";
-import Feature from "../Feature";
 import CircleDiscountIcon from "../../icons/CircleDiscount";
-
-import { useAppSelector, useAppDispatch } from "../../../hooks";
-import { decrement, increment } from "../../redux/slice/counterSlice";
+import Feature from "../Feature";
 
 export interface IAppProps {}
 
 export default function Header(props: IAppProps) {
-  const count = useAppSelector((state) => state.counter.value);
-  const dispatch = useAppDispatch();
-
   const settings = {
     dots: true,
     infinite: true,
@@ -40,15 +34,8 @@ export default function Header(props: IAppProps) {
                     <div className="slider-info">
                       <p className="slider-label">{item.label}</p>
                       <h2 className="slider-title">{item.title}</h2>
-                      <button
-                        className="slider-button"
-                        onClick={() => {
-                          dispatch(decrement());
-                        }}
-                      >
-                        <p>
-                          {item.btn} {count}
-                        </p>
+                      <button className="slider-button">
+                        <p>{item.btn}</p>
                         <span>
                           <BsArrowRight />
                         </span>

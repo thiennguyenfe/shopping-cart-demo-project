@@ -99,7 +99,7 @@ export default function FeatureCard(props: IFeatureCardProps) {
         <Slider {...settings}>
           {data?.map((item, index) => {
             return (
-              <Link href={`/product/${item.name}`}>
+              <Link href={`/product/${item.id}`}>
                 <Card className="card-item" key={index} loading={loading}>
                   <img src={item.image} alt="" />
                   <div className="actions"></div>
