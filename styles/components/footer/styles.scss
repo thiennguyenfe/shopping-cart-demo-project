@@ -138,23 +138,31 @@
           gap: 20px;
           padding: 10px 0;
 
-          input {
-            border: solid 1px #e1e3e5;
-            outline: none;
-            width: 70%;
-            border-radius: 4px;
-            padding: 8px;
-            background-color: #fff;
-          }
+          .ant-form {
+            width: 100%;
+            display: flex;
+            gap: 20px;
+            padding: 10px 0;
 
-          button {
-            outline: none;
-            border: none;
-            background-color: #029fae;
-            flex: 1;
-            color: #fff;
-            border-radius: 4px;
-            cursor: pointer;
+            .ant-input {
+              border: solid 1px #e1e3e5;
+              outline: none;
+              width: 70%;
+              border-radius: 4px;
+              padding: 8px;
+              background-color: #fff;
+            }
+
+            .ant-btn {
+              outline: none;
+              border: none;
+              background-color: #029fae;
+              flex: 1;
+              color: #fff;
+              border-radius: 4px;
+              cursor: pointer;
+              height: 40px;
+            }
           }
         }
       }

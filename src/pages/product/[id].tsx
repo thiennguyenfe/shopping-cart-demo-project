@@ -3,6 +3,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { useDispatch } from "react-redux";
 import Layout from "../../components/Layout";
 import AllProduct from "../../components/Products/AllProduct";
+import Description from "../../components/Products/Description";
 import ProductDetail from "../../components/Products/ProductDetails";
 import Review from "../../components/Products/Review";
 import { addToCart, decreaseProduct } from "../../redux/slice/cartSlice";
@@ -44,10 +45,10 @@ const Product = ({ product }: any) => {
                     {
                       label: "Description",
                       key: "1",
-                      children: <AllProduct />,
+                      children: <Description />,
                     },
                     {
-                      label: "Reviews",
+                      label: "Reviews (2)",
                       key: "2",
                       children: <Review />,
                     },

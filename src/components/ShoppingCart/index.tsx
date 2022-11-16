@@ -1,5 +1,6 @@
 import { Breadcrumb, Empty } from "antd";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { BsArrowLeft } from "react-icons/bs";
 import { HiTrash } from "react-icons/hi2";
@@ -16,6 +17,7 @@ import {
 const ShoppingCart = () => {
   const cart = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     dispatch(getTotal());
@@ -35,6 +37,10 @@ const ShoppingCart = () => {
 
   const handleClearCart = () => {
     dispatch(clearCart());
+  };
+
+  const handleGoToCheckout = () => {
+    router.push("/checkout");
   };
 
   return (
@@ -110,7 +116,7 @@ const ShoppingCart = () => {
                   <span className="amount">${cart.cartTotalAmount}</span>
                 </div>
                 <p>Taxes and shipping calculated at checkout</p>
-                <button>Check out</button>
+                <button onClick={handleGoToCheckout}>Check out</button>
                 <div className="continue-shopping">
                   <Link href="/">
                     <div className="continue-btn">

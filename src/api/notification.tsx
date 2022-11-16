@@ -20,5 +20,7 @@ export const pushNotification = async (data: {
     }
   );
 
-  return pushNotification;
+  console.log("status", status);
+
+  return data;
 };

@@ -47,8 +47,9 @@ const Review = () => {
         <Row gutter={16}>
           <Col className="gutter-row" span={12}>
             <div className="rating">
-              <p>4.5</p>
+              <h3>Customer reviews</h3>
               <Rate allowHalf disabled defaultValue={4.5} />
+              <span>4.5 out of 5</span>
               <p></p>
             </div>
           </Col>

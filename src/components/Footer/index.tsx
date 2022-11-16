@@ -6,6 +6,7 @@ import {
   IoLogoPinterest,
 } from "react-icons/io5";
 import { AiFillInstagram, AiFillYoutube } from "react-icons/ai";
+import { Button, Form, Input } from "antd";
 
 const Footer = () => {
   return (
@@ -53,14 +54,12 @@ const Footer = () => {
           <div className="footer-newletter">
             <p>NEWSLETTER</p>
             <div className="input-wrapper">
-              <input
-                type="text"
-                placeholder="Your email"
-                className="input"
-              ></input>
-              <button type="submit" className="btn">
-                Subcribe
-              </button>
+              <Form>
+                <Input type="text" placeholder="Your email" />
+                <Button htmlType="submit" className="btn">
+                  Subcribe
+                </Button>
+              </Form>
             </div>
             <span>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
